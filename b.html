@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hotel sodo</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  </head>
+  <body>
+    <swiper-container class="mySwiper" scrollbar-hide="true"></swiper-container>
+    <script>
+      const imageCount = 13;
+      const container = document.querySelector(".mySwiper");
+
+      for (let i = 0; i <= imageCount; i++) {
+        const slide = document.createElement("swiper-slide");
+        const img = document.createElement("img");
+        img.src = `https://d1fmf3vphelit1.cloudfront.net/image/b${i}.jpg`;
+        slide.appendChild(img);
+        container.appendChild(slide);
+      }
+
+      container.addEventListener("click", (e) => {
+        const rect = container.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+
+        if (clickX > rect.width / 2) {
+          container.swiper.slideNext();
+        } else {
+          container.swiper.slidePrev();
+        }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+  </body>
+</html>

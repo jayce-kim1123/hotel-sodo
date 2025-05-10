@@ -11,13 +11,13 @@
   <body>
     <swiper-container class="mySwiper" scrollbar-hide="true"></swiper-container>
     <script>
-      const imageCount = 23;
+      const imageCount = 6;
       const container = document.querySelector(".mySwiper");
 
       for (let i = 0; i <= imageCount; i++) {
         const slide = document.createElement("swiper-slide");
         const img = document.createElement("img");
-        img.src = `https://d1fmf3vphelit1.cloudfront.net/image/${i}.jpg`;
+        img.src = `https://d1fmf3vphelit1.cloudfront.net/image/c${i}.jpg`;
         slide.appendChild(img);
         container.appendChild(slide);
       }
