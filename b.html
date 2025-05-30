@@ -15,11 +15,14 @@
       const container = document.querySelector(".mySwiper");
 
       for (let i = 0; i <= imageCount; i++) {
-        const slide = document.createElement("swiper-slide");
-        const img = document.createElement("img");
+        const img = new Image();
         img.src = `https://d1fmf3vphelit1.cloudfront.net/image/b${i}.jpg`;
-        slide.appendChild(img);
-        container.appendChild(slide);
+
+        img.onload = () => {
+          const slide = document.createElement("swiper-slide");
+          slide.appendChild(img);
+          container.appendChild(slide);
+        };
       }
 
       container.addEventListener("click", (e) => {
