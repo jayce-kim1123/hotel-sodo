@@ -14,16 +14,25 @@
       const imageCount = 10;
       const container = document.querySelector(".mySwiper");
 
-      for (let i = 0; i <= imageCount; i++) {
-        const img = new Image();
-        img.src = `https://d1fmf3vphelit1.cloudfront.net/image/a${i}.jpg`;
+      async function loadImages() {
+        for (let i = 0; i <= imageCount; i++) {
+          const img = new Image();
+          img.src = `https://d1fmf3vphelit1.cloudfront.net/image/a${i}.jpg`;
 
-        img.onload = () => {
-          const slide = document.createElement("swiper-slide");
-          slide.appendChild(img);
-          container.appendChild(slide);
-        };
+          await new Promise((resolve, reject) => {
+            img.onload = () => resolve(img);
+            img.onerror = () => resolve(null); // 실패해도 넘어감
+          }).then((loadedImg) => {
+            if (loadedImg) {
+              const slide = document.createElement("swiper-slide");
+              slide.appendChild(loadedImg);
+              container.appendChild(slide);
+            }
+          });
+        }
       }
+
+      loadImages();
 
       container.addEventListener("click", (e) => {
         const rect = container.getBoundingClientRect();
